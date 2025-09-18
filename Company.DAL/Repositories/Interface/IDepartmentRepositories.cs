@@ -1,5 +1,4 @@
-﻿
-namespace Company.DAL.Repositories
+﻿namespace Company.DAL.Repositories.Interface
 {
     public interface IDepartmentRepositories
     {

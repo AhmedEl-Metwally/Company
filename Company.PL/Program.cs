@@ -1,5 +1,8 @@
+using Company.BLL.Repositories.Interface;
+using Company.BLL.Repositories.Services;
 using Company.DAL.Data.Contexts;
-using Company.DAL.Repositories;
+using Company.DAL.Repositories.Interface;
+using Company.DAL.Repositories.Services;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -11,6 +14,7 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
 { options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnectionString"));});
 
 builder.Services.AddScoped<IDepartmentRepositories,DepartmentRepositories>();
+builder.Services.AddScoped<IDepartmentService, DepartmentService>();
 
 
 var app = builder.Build();
