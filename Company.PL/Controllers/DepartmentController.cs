@@ -4,18 +4,14 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Company.PL.Controllers
 {
-    public class DepartmentController : Controller
+    public class DepartmentController(IDepartmentService _departmentService) : Controller
     {
-        private readonly IDepartmentService _departmentService;
-
-        public DepartmentController(IDepartmentService departmentService)
-        {
-            _departmentService = departmentService;
-        }
-
+        //Index
+        [HttpGet]
         public IActionResult Index()
         {
-            return View();
+            var department = _departmentService.GetAllDepartments(); 
+            return View(department);
         }
     }
 }

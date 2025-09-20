@@ -2,11 +2,12 @@
 using Company.BLL.Factory;
 using Company.BLL.Repositories.Interface;
 using Company.DAL.Models;
+using Company.DAL.Repositories.Interface;
 using Company.DAL.Repositories.Services;
 
 namespace Company.BLL.Repositories.Services
 {
-    public class DepartmentService(DepartmentRepositories _departmentRepositories) : IDepartmentService
+    public class DepartmentService(IDepartmentRepositories _departmentRepositories) : IDepartmentService
     {
         //GetAll
         public IEnumerable<DepartmentDto> GetAllDepartments()
