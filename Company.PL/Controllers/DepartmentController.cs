@@ -1,6 +1,6 @@
 ﻿using Company.BLL.Dtos;
 using Company.BLL.Repositories.Interface;
-using Company.BLL.Repositories.Services;
+using Company.PL.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Company.PL.Controllers
@@ -40,17 +40,13 @@ namespace Company.PL.Controllers
                     if (result > 0)
                         return RedirectToAction(nameof(Index));
                     else
-                    {
                         ModelState.AddModelError(string.Empty, "Depatment can not created");
-                    }
                 }
                 catch (Exception ex) 
                 {
                     //Development ==> action , log error in console , view
                     if(_webHostEnvironment.IsDevelopment())
-                    {
                         _logger.LogError($"Department can not be create because : {ex.Message}");
-                    }
                     else
                     {
                         _logger.LogError($"\"Department can not be create because : {ex}");
@@ -75,9 +71,64 @@ namespace Company.PL.Controllers
             return View(department);
         }
 
+        //Edit
+        [HttpGet]
+        public IActionResult Edit(int? id)
+        {
+            if (!id.HasValue)
+                return BadRequest();
+            var department = _departmentService.GetDepartmentById(id.Value);
+            if(department is null)
+                return BadRequest();
 
+            var departmentViewModels = new EditDepartmentViewModels()
+            {
+                Code = department.Code,
+                Name = department.Name,
+                Description = department.Description,
+                CreatedOn = department.CreateOn.HasValue ? department.CreateOn.Value : default
+            };
 
+            return View(departmentViewModels);
+        }
 
+        [HttpPost]
+        public IActionResult Edit([FromRoute]int? id ,EditDepartmentViewModels editDepartmentViewModels)
+        {
+            if(ModelState.IsValid)
+            { 
+                try
+                {
+                    if(!id.HasValue) return BadRequest();
+                    var updatedDepartmentDto = new UpdatedDepartmentDto()
+                    {
+                        Id = id.Value,
+                        Code = editDepartmentViewModels.Code,
+                        Name = editDepartmentViewModels.Name,
+                        Description = editDepartmentViewModels.Description,
+                        DateOfCreation = editDepartmentViewModels.CreatedOn
+                    };
+                    int result = _departmentService.UpdatedDepartment(updatedDepartmentDto);
+                    if (result > 0)
+                        return RedirectToAction(nameof(Index));
+                    else
+                        ModelState.AddModelError(string.Empty,"can not be updated");
+                
+                }
+                catch (Exception ex)
+                {
+                    //Development ==> action , log error in console , view
+                    if (_webHostEnvironment.IsDevelopment())
+                        _logger.LogError($"Department can not be create because : {ex.Message}");
+                    else
+                    {
+                        _logger.LogError($"\"Department can not be create because : {ex}");
+                        return View("ErrorView");
+                    }
+                }
+            }
+            return View (editDepartmentViewModels);
+        }
 
     }
 }
