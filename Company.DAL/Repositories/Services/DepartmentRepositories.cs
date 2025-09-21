@@ -49,7 +49,7 @@ namespace Company.DAL.Repositories.Services
         {
             ArgumentNullException.ThrowIfNull(department);
 
-            if (department.Id <= 0 || _context.Departments.Any(d => d.Id == department.Id))
+            if (department.Id <= 0 || !_context.Departments.Any(d => d.Id == department.Id))
                 throw department.Id <= 0 ? new ArgumentException("Invalid Department Id.", nameof(department))
                                         : new KeyNotFoundException($"Department with Id {department.Id} not found.");
 

@@ -130,5 +130,48 @@ namespace Company.PL.Controllers
             return View (editDepartmentViewModels);
         }
 
+        //Delete
+        //Get ==> result from view
+        //[HttpGet]
+        //public IActionResult Delete(int? id)
+        //{
+        //    if(!id.HasValue)
+        //        return BadRequest();
+        //    var department = _departmentService.GetDepartmentById(id.Value);
+        //    if(department is null)
+        //        return NotFound();  
+
+        //    return View(department);
+        //}
+
+        [HttpPost]
+        public IActionResult Delete(int id)
+        {
+            if(id == 0)
+                return BadRequest();
+            try 
+            {
+                bool isDeleted = _departmentService.DeleteDepartment(id);
+                if (isDeleted)
+                    return RedirectToAction(nameof(Index));
+                else 
+                    ModelState.AddModelError(string.Empty, "Can not Delete"); 
+            }
+            catch (Exception ex)
+            {
+                //Development ==> action , log error in console , view
+                if (_webHostEnvironment.IsDevelopment())
+                    _logger.LogError($"Department can not be create because : {ex.Message}");
+                else
+                {
+                    _logger.LogError($"\"Department can not be create because : {ex}");
+                    return View("ErrorView");
+                }
+            }
+            return RedirectToAction(nameof(Delete), new { id });
+
+        }
+
+
     }
 }
