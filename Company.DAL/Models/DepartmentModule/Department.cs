@@ -1,4 +1,6 @@
-﻿namespace Company.DAL.Models
+﻿using Company.DAL.Models.Shared;
+
+namespace Company.DAL.Models.DepartmentModule
 {
     public class Department :BaseEntity
     {

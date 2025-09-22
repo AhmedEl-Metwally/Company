@@ -36,7 +36,7 @@ namespace Company.BLL.Repositories.Services
 
             if (department is null)
                 return false;
-            int numOfRows = _departmentRepositories.Remive(department);
+            int numOfRows = _departmentRepositories.Remove(department);
             return numOfRows > 0 ? true : false;
         }
 

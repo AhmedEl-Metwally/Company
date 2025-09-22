@@ -1,4 +1,4 @@
-﻿namespace Company.DAL.Models
+﻿namespace Company.DAL.Models.Shared
 {
     public class BaseEntity
     {

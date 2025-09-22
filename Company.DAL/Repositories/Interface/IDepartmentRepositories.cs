@@ -1,11 +1,9 @@
-﻿namespace Company.DAL.Repositories.Interface
+﻿using Company.DAL.Models.DepartmentModule;
+
+namespace Company.DAL.Repositories.Interface
 {
-    public interface IDepartmentRepositories
+    public interface IDepartmentRepositories : IGenericRepositories<Department>
     {
-        int Add(Department department);
-        IEnumerable<Department> GetAll(bool withTracking = false);
-        Department GetById(int id);
-        int Remive(Department department);
-        int Update(Department department);
+        
     }
 }

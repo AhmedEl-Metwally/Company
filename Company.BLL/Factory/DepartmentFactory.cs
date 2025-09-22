@@ -1,5 +1,5 @@
 ﻿using Company.BLL.Dtos;
-using Company.DAL.Models;
+using Company.DAL.Models.DepartmentModule;
 
 namespace Company.BLL.Factory
 {
