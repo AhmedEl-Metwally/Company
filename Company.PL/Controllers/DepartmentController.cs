@@ -1,4 +1,5 @@
 ﻿using Company.BLL.Dtos;
+using Company.BLL.Dtos.DepartmentDtos;
 using Company.BLL.Repositories.Interface;
 using Company.PL.ViewModels;
 using Microsoft.AspNetCore.Mvc;

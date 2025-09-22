@@ -1,6 +1,4 @@
-﻿
-
-namespace Company.BLL.Dtos
+﻿namespace Company.BLL.Dtos.DepartmentDtos
 {
     public class DepartmentDetailsDto
     {

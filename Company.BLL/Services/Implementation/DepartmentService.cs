@@ -1,9 +1,7 @@
-﻿using Company.BLL.Dtos;
+﻿using Company.BLL.Dtos.DepartmentDtos;
 using Company.BLL.Factory;
 using Company.BLL.Repositories.Interface;
-using Company.DAL.Models;
 using Company.DAL.Repositories.Interface;
-using Company.DAL.Repositories.Services;
 
 namespace Company.BLL.Repositories.Services
 {

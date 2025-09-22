@@ -1,4 +1,4 @@
-﻿using Company.BLL.Dtos;
+﻿using Company.BLL.Dtos.DepartmentDtos;
 
 namespace Company.BLL.Repositories.Interface
 {

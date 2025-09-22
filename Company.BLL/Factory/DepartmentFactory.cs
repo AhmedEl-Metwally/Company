@@ -1,4 +1,4 @@
-﻿using Company.BLL.Dtos;
+﻿using Company.BLL.Dtos.DepartmentDtos;
 using Company.DAL.Models.DepartmentModule;
 
 namespace Company.BLL.Factory

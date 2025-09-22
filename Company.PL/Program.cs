@@ -1,3 +1,4 @@
+using Company.BLL.Mapping;
 using Company.BLL.Repositories.Interface;
 using Company.BLL.Repositories.Services;
 using Company.DAL.Data.Contexts;
@@ -15,6 +16,9 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
 
 builder.Services.AddScoped<IDepartmentRepositories,DepartmentRepositories>();
 builder.Services.AddScoped<IDepartmentService, DepartmentService>();
+builder.Services.AddScoped<IEmployeeRepositories, EmployeeRepositories>();
+builder.Services.AddScoped<IEmployeeService , EmployeeService>();
+builder.Services.AddAutoMapper(Mapping => Mapping.AddProfile(new MappingProfile()));
 
 
 var app = builder.Build();

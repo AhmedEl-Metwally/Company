@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Company.BLL.Dtos
+namespace Company.BLL.Dtos.DepartmentDtos
 {
     public class UpdatedDepartmentDto
     {
