@@ -1,8 +1,5 @@
-﻿using Company.BLL.Dtos.DepartmentDtos;
-using Company.BLL.Dtos.EmployeeDtos;
-using Company.BLL.Services.Implementation;
+﻿using Company.BLL.Dtos.EmployeeDtos;
 using Company.BLL.Services.Interface;
-using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Company.PL.Controllers
@@ -22,7 +19,6 @@ namespace Company.PL.Controllers
         }
 
         //Create
-
         [HttpGet]
         public IActionResult Create()
         {
@@ -57,5 +53,16 @@ namespace Company.PL.Controllers
             }
             return View(createdEmployeeDto);
         }
+
+        //Details
+        [HttpGet]
+        public IActionResult Details(int? id)
+        {
+            if(!id.HasValue)
+                return BadRequest();
+            var employee = _employeeService.GetEmployeeById(id.Value);
+            return (employee is null) ? NotFound() : View(employee);
+        }
+
     }
 }
