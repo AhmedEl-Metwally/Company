@@ -4,12 +4,14 @@ using Company.BLL.Services.Interface;
 using Company.DAL.Data.Contexts;
 using Company.DAL.Repositories.Implementation;
 using Company.DAL.Repositories.Interface;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-builder.Services.AddControllersWithViews();
+builder.Services.AddControllersWithViews
+                 (options =>{ options.Filters.Add(new AutoValidateAntiforgeryTokenAttribute());});
 
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
 { options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnectionString"));});

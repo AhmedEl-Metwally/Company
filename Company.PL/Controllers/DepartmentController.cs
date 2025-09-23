@@ -30,6 +30,7 @@ namespace Company.PL.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public IActionResult Create(CreateDepartmentDto createDepartmentDto)
         {
             if(ModelState.IsValid)
@@ -93,6 +94,7 @@ namespace Company.PL.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public IActionResult Edit([FromRoute]int? id ,EditDepartmentViewModels editDepartmentViewModels)
         {
             if(ModelState.IsValid)
@@ -145,6 +147,7 @@ namespace Company.PL.Controllers
         //}
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public IActionResult Delete(int id)
         {
             if(id == 0)

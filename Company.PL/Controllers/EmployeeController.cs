@@ -29,6 +29,7 @@ namespace Company.PL.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public IActionResult Create(CreatedEmployeeDto createdEmployeeDto)
         {
             if (ModelState.IsValid)
@@ -93,6 +94,7 @@ namespace Company.PL.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public IActionResult Edit([FromRoute] int? id , UpdatedEmployeeDto updatedEmployeeDto)
         {
             if(!id.HasValue || id != updatedEmployeeDto.Id)
