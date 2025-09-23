@@ -1,6 +1,6 @@
 ﻿using Company.BLL.Dtos.DepartmentDtos;
 
-namespace Company.BLL.Repositories.Interface
+namespace Company.BLL.Services.Interface
 {
     public interface IDepartmentService
     {

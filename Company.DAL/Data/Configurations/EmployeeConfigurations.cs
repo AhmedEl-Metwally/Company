@@ -1,6 +1,4 @@
-﻿
-
-using Company.DAL.Models.EmployeeModule;
+﻿using Company.DAL.Models.EmployeeModule;
 using Company.DAL.Models.Shared;
 
 namespace Company.DAL.Data.Configurations

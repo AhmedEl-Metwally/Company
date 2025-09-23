@@ -1,4 +1,4 @@
-﻿namespace Demo.BusniessLogic.Dtos
+﻿namespace Company.BLL.Dtos.EmployeeDtos
 {
     public class EmployeeDetailsDto
     {

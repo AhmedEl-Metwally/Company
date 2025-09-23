@@ -2,7 +2,7 @@
 using Company.DAL.Models.EmployeeModule;
 using Company.DAL.Repositories.Interface;
 
-namespace Company.DAL.Repositories.Services
+namespace Company.DAL.Repositories.Implementation
 {
     public class EmployeeRepositories(ApplicationDbContext _context) : GenericRepositories<Employee>(_context) ,IEmployeeRepositories
     {

@@ -1,6 +1,6 @@
-﻿using Demo.BusniessLogic.Dtos;
+﻿using Company.BLL.Dtos.EmployeeDtos;
 
-namespace Company.BLL.Repositories.Interface
+namespace Company.BLL.Services.Interface
 {
     public interface IEmployeeService
     {

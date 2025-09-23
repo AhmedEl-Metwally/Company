@@ -1,6 +1,4 @@
-﻿
-
-namespace Company.DAL.Models.EmployeeModule
+﻿namespace Company.DAL.Models.EmployeeModule
 {
     public enum EmployeeType
     {

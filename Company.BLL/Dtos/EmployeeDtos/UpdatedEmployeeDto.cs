@@ -2,7 +2,7 @@
 using Company.DAL.Models.Shared;
 using System.ComponentModel.DataAnnotations;
 
-namespace Demo.BusniessLogic.Dtos
+namespace Company.BLL.Dtos.EmployeeDtos
 {
     public class UpdatedEmployeeDto
     {

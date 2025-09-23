@@ -1,11 +1,10 @@
 ﻿using AutoMapper;
-using Company.BLL.Repositories.Interface;
-using Company.DAL.Models.DepartmentModule;
+using Company.BLL.Dtos.EmployeeDtos;
+using Company.BLL.Services.Interface;
 using Company.DAL.Models.EmployeeModule;
 using Company.DAL.Repositories.Interface;
-using Demo.BusniessLogic.Dtos;
 
-namespace Company.BLL.Repositories.Services
+namespace Company.BLL.Services.Implementation
 {
     public class EmployeeService(IEmployeeRepositories _employeeRepositories ,IMapper _mapper) : IEmployeeService
     {

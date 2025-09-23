@@ -2,7 +2,7 @@
 using Company.DAL.Models.Shared;
 using Company.DAL.Repositories.Interface;
 
-namespace Company.DAL.Repositories.Services
+namespace Company.DAL.Repositories.Implementation
 {
     public class GenericRepositories<T>(ApplicationDbContext _context) : IGenericRepositories<T> where T : BaseEntity
     {

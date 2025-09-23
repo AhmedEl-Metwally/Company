@@ -1,9 +1,9 @@
 using Company.BLL.Mapping;
-using Company.BLL.Repositories.Interface;
-using Company.BLL.Repositories.Services;
+using Company.BLL.Services.Implementation;
+using Company.BLL.Services.Interface;
 using Company.DAL.Data.Contexts;
+using Company.DAL.Repositories.Implementation;
 using Company.DAL.Repositories.Interface;
-using Company.DAL.Repositories.Services;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);

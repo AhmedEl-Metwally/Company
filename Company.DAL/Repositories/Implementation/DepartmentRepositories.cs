@@ -2,7 +2,7 @@
 using Company.DAL.Models.DepartmentModule;
 using Company.DAL.Repositories.Interface;
 
-namespace Company.DAL.Repositories.Services
+namespace Company.DAL.Repositories.Implementation
 {
     public class DepartmentRepositories(ApplicationDbContext _context) : GenericRepositories<Department>(_context) , IDepartmentRepositories
     {

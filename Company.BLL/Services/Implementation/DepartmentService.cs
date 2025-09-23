@@ -1,9 +1,9 @@
 ﻿using Company.BLL.Dtos.DepartmentDtos;
 using Company.BLL.Factory;
-using Company.BLL.Repositories.Interface;
+using Company.BLL.Services.Interface;
 using Company.DAL.Repositories.Interface;
 
-namespace Company.BLL.Repositories.Services
+namespace Company.BLL.Services.Implementation
 {
     public class DepartmentService(IDepartmentRepositories _departmentRepositories) : IDepartmentService
     {

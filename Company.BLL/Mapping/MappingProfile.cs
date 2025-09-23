@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
+using Company.BLL.Dtos.EmployeeDtos;
 using Company.DAL.Models.EmployeeModule;
-using Demo.BusniessLogic.Dtos;
 
 namespace Company.BLL.Mapping
 {

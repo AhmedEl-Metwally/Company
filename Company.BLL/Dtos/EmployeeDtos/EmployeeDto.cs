@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace Demo.BusniessLogic.Dtos
+namespace Company.BLL.Dtos.EmployeeDtos
 {
     public class EmployeeDto
     {
