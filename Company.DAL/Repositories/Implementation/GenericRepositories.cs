@@ -9,9 +9,9 @@ namespace Company.DAL.Repositories.Implementation
         public IEnumerable<T> GetAll(bool withTracking = false)
         {
             if (withTracking)
-                return _context.Set<T>().ToList();
+                return _context.Set<T>().Where(entity => entity.IsDeleted == false).ToList();
             else
-                return _context.Set<T>().AsNoTracking().ToList();
+                return _context.Set<T>().Where(entity => entity.IsDeleted == false).AsNoTracking().ToList();
 
         }
 

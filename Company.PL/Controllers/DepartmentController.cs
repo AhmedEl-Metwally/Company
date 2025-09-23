@@ -161,10 +161,10 @@ namespace Company.PL.Controllers
             {
                 //Development ==> action , log error in console , view
                 if (_webHostEnvironment.IsDevelopment())
-                    _logger.LogError($"Department can not be create because : {ex.Message}");
+                    _logger.LogError($"Department can not be deleted because : {ex.Message}");
                 else
                 {
-                    _logger.LogError($"\"Department can not be create because : {ex}");
+                    _logger.LogError($"\"Department can not be deleted because : {ex}");
                     return View("ErrorView");
                 }
             }
