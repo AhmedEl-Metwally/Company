@@ -3,6 +3,7 @@ using Company.BLL.Services.Implementation;
 using Company.BLL.Services.Interface;
 using Company.DAL.Models.EmployeeModule;
 using Company.DAL.Models.Shared;
+using Company.PL.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Company.PL.Controllers
@@ -30,13 +31,28 @@ namespace Company.PL.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Create(CreatedEmployeeDto createdEmployeeDto)
+        public IActionResult Create(CreatedAndUpdatedEmployeeViewModel createdAndUpdatedEmployeeViewModel )
         {
             if (ModelState.IsValid)
             {
                 try
                 {
-                    int result = _employeeService.CreateEmployee(createdEmployeeDto);
+                    var createdEmployeeDto = new CreatedEmployeeDto
+                    {
+                        Name = createdAndUpdatedEmployeeViewModel.Name,
+                        Age = createdAndUpdatedEmployeeViewModel.Age,
+                        Address = createdAndUpdatedEmployeeViewModel.Address,
+                        Salary = createdAndUpdatedEmployeeViewModel.Salary,
+                        IsActive = createdAndUpdatedEmployeeViewModel.IsActive,
+                        Email = createdAndUpdatedEmployeeViewModel.Email,
+                        PhoneNumber = createdAndUpdatedEmployeeViewModel.PhoneNumber,
+                        HiringDate = createdAndUpdatedEmployeeViewModel.HiringDate,
+                        Gender = createdAndUpdatedEmployeeViewModel.Gender,
+                        EmployeeType = createdAndUpdatedEmployeeViewModel.EmployeeType,
+                        DepartmentId = createdAndUpdatedEmployeeViewModel.DepartmentId
+                    };
+
+                        int result = _employeeService.CreateEmployee(createdEmployeeDto);
                     if (result > 0)
                         return RedirectToAction(nameof(Index));
                     else
@@ -54,7 +70,7 @@ namespace Company.PL.Controllers
                 }
 
             }
-            return View(createdEmployeeDto);
+            return View(createdAndUpdatedEmployeeViewModel);
         }
 
         //Details
@@ -76,9 +92,8 @@ namespace Company.PL.Controllers
             var empolee = _employeeService.GetEmployeeById(id.Value);
             if(empolee is null)
                 return NotFound();
-            var employyDto = new UpdatedEmployeeDto
+            return View(new CreatedAndUpdatedEmployeeViewModel()
             {
-                Id = empolee.Id,
                 Name = empolee.Name,
                 Age = empolee.Age,
                 Address = empolee.Address,
@@ -88,22 +103,38 @@ namespace Company.PL.Controllers
                 PhoneNumber = empolee.PhoneNumber,
                 HiringDate = empolee.HiringDate,
                 Gender = Enum.Parse<Gender>(empolee.Gender),
-                EmployeeType = Enum.Parse<EmployeeType>(empolee.EmployeeType)
-            };
-            return View(employyDto);
+                EmployeeType = Enum.Parse<EmployeeType>(empolee.EmployeeType),
+                DepartmentId = empolee.DepartmentId
+            });
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Edit([FromRoute] int? id , UpdatedEmployeeDto updatedEmployeeDto)
+        public IActionResult Edit([FromRoute] int? id , CreatedAndUpdatedEmployeeViewModel createdAndUpdatedEmployeeViewModel )
         {
-            if(!id.HasValue || id != updatedEmployeeDto.Id)
+            if(!id.HasValue)
                 return BadRequest();
             if (!ModelState.IsValid)
-                return View(updatedEmployeeDto);
+                return View(createdAndUpdatedEmployeeViewModel);
 
             try
             {
+                var updatedEmployeeDto = new UpdatedEmployeeDto
+                {
+                    Id = id.Value,
+                    Name = createdAndUpdatedEmployeeViewModel.Name,
+                    Age = createdAndUpdatedEmployeeViewModel.Age,
+                    Address = createdAndUpdatedEmployeeViewModel.Address,
+                    Salary = createdAndUpdatedEmployeeViewModel.Salary,
+                    IsActive = createdAndUpdatedEmployeeViewModel.IsActive,
+                    Email = createdAndUpdatedEmployeeViewModel.Email,
+                    PhoneNumber = createdAndUpdatedEmployeeViewModel.PhoneNumber,
+                    HiringDate = createdAndUpdatedEmployeeViewModel.HiringDate,
+                    EmployeeType = createdAndUpdatedEmployeeViewModel.EmployeeType,
+                    Gender = createdAndUpdatedEmployeeViewModel.Gender,
+                    DepartmentId = createdAndUpdatedEmployeeViewModel.DepartmentId
+                };
+
                 int result = _employeeService.UpdateEmployee(updatedEmployeeDto);
                 if (result > 0)
                     return RedirectToAction(nameof(Index));
@@ -116,17 +147,13 @@ namespace Company.PL.Controllers
             catch (Exception ex)
             {
                 if (_webHostEnvironment.IsDevelopment())
-                {
-                    _logger.LogError($"Employee can not be updated because : {ex.Message}");
-                    return View(updatedEmployeeDto);
-
-                }
+                    ModelState.AddModelError(string.Empty, $"CreatedEmployee can not be updated because : {ex.Message}");
                 else
-                {
-                    _logger.LogError($"\"CreatedEmployee can not be updated because : {ex}");
-                    return View("ErrorView");
-                }
+                   _logger.LogError($"\"CreatedEmployee can not be updated because : {ex}");
+              
+
             }
+            return View(createdAndUpdatedEmployeeViewModel);
         }
 
         //Delete

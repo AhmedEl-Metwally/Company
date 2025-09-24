@@ -2,9 +2,9 @@
 using Company.DAL.Models.Shared;
 using System.ComponentModel.DataAnnotations;
 
-namespace Company.BLL.Dtos.EmployeeDtos
+namespace Company.PL.ViewModels
 {
-    public class UpdatedEmployeeDto
+    public class CreatedAndUpdatedEmployeeViewModel
     {
         public int Id { get; set; }
         [Required(ErrorMessage = "Name Can't Be Null")]
@@ -39,7 +39,7 @@ namespace Company.BLL.Dtos.EmployeeDtos
 
         public EmployeeType EmployeeType { get; set; }
 
-        //[Display(Name = "Department")]
+        [Display(Name = "Department")]
         public int? DepartmentId { get; set; }
     }
 }
