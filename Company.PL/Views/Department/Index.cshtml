@@ -31,22 +31,8 @@
                     <th>@department.Name</th>
                     <th>@department.Description</th>
                     <th>@department.DateOfCreation</th>
-
+                    <partial name="_ButtonsPartialView" model="department.DeptId" />
                     <td>
-                        <a class="btn btn-primary" asp-action="Details" asp-route-id="@department.DeptId">
-                            <i class="fas fa-eye"></i> Details
-                        </a>
-                    </td>
-                    <td>
-                        <a class="btn btn-success" asp-action="Edit" asp-route-id="@department.DeptId">
-                            <i class="fas fa-edit"></i> Edit
-                        </a>
-                    </td>
-                    <td>
-                       @*  <a class="btn btn-danger" asp-action="Delete" asp-route-id="@department.DeptId">
-                            <i class="fas fa-trash"></i> Delete
-                        </a> *@
-
                         <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#DeleteModal-@department.DeptId">
                             <i class="fas fa-trash"></i> Delete
                         </button>
