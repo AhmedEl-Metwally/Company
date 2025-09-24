@@ -1,4 +1,6 @@
-﻿namespace Company.BLL.Dtos.EmployeeDtos
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace Company.BLL.Dtos.EmployeeDtos
 {
     public class EmployeeDetailsDto
     {
@@ -19,6 +21,9 @@
         public DateTime ModifiedOn { get; set; }
 
         public int? DepartmentId { get; set; }
+        [Display(Name = "Department")]
+        public string? DepartmentName { get; set; }
+
 
     }
 }

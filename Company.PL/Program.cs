@@ -14,7 +14,10 @@ builder.Services.AddControllersWithViews
                  (options =>{ options.Filters.Add(new AutoValidateAntiforgeryTokenAttribute());});
 
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
-{ options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnectionString"));});
+{
+    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnectionString"));
+    options.UseLazyLoadingProxies();    
+});
 
 builder.Services.AddScoped<IDepartmentRepositories,DepartmentRepositories>();
 builder.Services.AddScoped<IDepartmentService, DepartmentService>();

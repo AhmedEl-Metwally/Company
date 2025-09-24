@@ -10,13 +10,15 @@ namespace Company.BLL.Mapping
         {
             CreateMap<Employee , EmployeeDto>()
                .ForMember(dest =>dest.Gender,option =>option.MapFrom(src =>src.Gender ))
-               .ForMember(dest =>dest.EmployeeType,option =>option.MapFrom(src =>src.EmployeeType ));
+               .ForMember(dest =>dest.EmployeeType,option =>option.MapFrom(src =>src.EmployeeType ))
+               .ForMember(dest =>dest.DepartmentName,option =>option.MapFrom(scr => scr.Department == null ? "No Department" : scr.Department.Name ));
 
             CreateMap<Employee , EmployeeDetailsDto>()
                .ForMember(dest => dest.Gender, option => option.MapFrom(src => src.Gender))
                .ForMember(dest => dest.EmployeeType, option => option.MapFrom(src => src.EmployeeType))
                .ForMember(dest => dest.HiringDate, option => option.MapFrom(src => DateOnly.FromDateTime(src.HiringDate)))
-               ;
+               .ForMember(dest =>dest.DepartmentName,option =>option.MapFrom(scr => scr.Department == null ? "No Department" : scr.Department.Name ));
+
             CreateMap<CreatedEmployeeDto, Employee>()
                .ForMember(dest => dest.HiringDate, option => option.MapFrom(src =>src.HiringDate.ToDateTime(TimeOnly.MinValue)))
                 ;

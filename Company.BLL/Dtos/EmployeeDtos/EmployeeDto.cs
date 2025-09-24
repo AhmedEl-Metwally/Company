@@ -15,6 +15,10 @@ namespace Company.BLL.Dtos.EmployeeDtos
         public string? Email { get; set; }
         public string Gender { get; set; }
         [Display(Name = "Employee Type")]
-        public string EmployeeType { get; set; }
+        public string EmployeeType { get; set; } = null!;     //
+
+        [Display(Name = "Department")]
+        public string? DepartmentName { get; set; }
+
     }
 }
