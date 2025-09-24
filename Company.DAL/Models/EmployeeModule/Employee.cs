@@ -1,4 +1,4 @@
-﻿
+﻿using Company.DAL.Models.DepartmentModule;
 using Company.DAL.Models.Shared;
 
 namespace Company.DAL.Models.EmployeeModule
@@ -15,5 +15,9 @@ namespace Company.DAL.Models.EmployeeModule
         public DateTime HiringDate { get; set; } //
         public Gender Gender  { get; set; }
         public EmployeeType EmployeeType  { get; set; }
+
+
+        public int? DepartmentId { get; set; }
+        public Department? Department  { get; set; }
     }
 }
