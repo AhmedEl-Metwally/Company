@@ -1,4 +1,5 @@
 ﻿using Company.DAL.Models.Shared;
+using System.Linq.Expressions;
 
 namespace Company.DAL.Repositories.Interface
 {
@@ -6,6 +7,7 @@ namespace Company.DAL.Repositories.Interface
     {
         int Add(T entity);
         IEnumerable<T> GetAll(bool withTracking = false);
+        IEnumerable<T> GetAll(Expression<Func<T,bool>> expression);
         T? GetById(int id);
         int Remove(T entity);
         int Update(T entity);

@@ -9,9 +9,15 @@ namespace Company.BLL.Services.Implementation
     public class EmployeeService(IEmployeeRepositories _employeeRepositories ,IMapper _mapper) : IEmployeeService
     {
 
-        public IEnumerable<EmployeeDto> GetAllEmployee(bool withTracking = false)
+        public IEnumerable<EmployeeDto> GetAllEmployee(string EmployeeSearchName, bool withTracking = false)
         {
-            var employee = _employeeRepositories.GetAll(withTracking);
+            IEnumerable<Employee> employee;
+
+            if (string.IsNullOrWhiteSpace(EmployeeSearchName))
+                 employee = _employeeRepositories.GetAll(withTracking);
+            else
+                 employee = _employeeRepositories.GetAll(E => E.Name.ToLower().Contains(EmployeeSearchName.ToLower()));
+            
             var employeeDto= _mapper.Map<IEnumerable<Employee>,IEnumerable<EmployeeDto>>(employee);
             return employeeDto;
         }

@@ -15,9 +15,9 @@ namespace Company.PL.Controllers
                                   ) : Controller
     {
         [HttpGet]
-        public IActionResult Index()
+        public IActionResult Index(string? EmployeeSearchName)
         {
-            var employees = _employeeService.GetAllEmployee();
+            var employees = _employeeService.GetAllEmployee(EmployeeSearchName);
             return View(employees);
         }
 

@@ -1,6 +1,7 @@
 ﻿using Company.DAL.Data.Contexts;
 using Company.DAL.Models.Shared;
 using Company.DAL.Repositories.Interface;
+using System.Linq.Expressions;
 
 namespace Company.DAL.Repositories.Implementation
 {
@@ -14,6 +15,9 @@ namespace Company.DAL.Repositories.Implementation
                 return _context.Set<T>().Where(entity => entity.IsDeleted == false).AsNoTracking().ToList();
 
         }
+
+        //Search
+        public IEnumerable<T> GetAll(Expression<Func<T, bool>> expression) =>_context.Set<T>().Where(expression).ToList();  
 
         //GetById
         public T? GetById(int id) => _context.Set<T>().Find(id) ?? throw new KeyNotFoundException($"Department with id {id} not found");
@@ -38,5 +42,7 @@ namespace Company.DAL.Repositories.Implementation
             _context.Set<T>().Remove(entity);
             return _context.SaveChanges();
         }
+
+     
     }
 }
