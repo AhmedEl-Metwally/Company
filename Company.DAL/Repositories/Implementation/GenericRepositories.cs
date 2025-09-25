@@ -23,24 +23,24 @@ namespace Company.DAL.Repositories.Implementation
         public T? GetById(int id) => _context.Set<T>().Find(id) ?? throw new KeyNotFoundException($"Department with id {id} not found");
 
         //Add
-        public int Add(T entity)
+        public void Add(T entity)
         {
             _context.Set<T>().Add(entity);
-            return _context.SaveChanges();
+           // return _context.SaveChanges();
         }
 
         //Update
-        public int Update(T entity)
+        public void Update(T entity)
         {
             _context.Set<T>().Update(entity);
-            return _context.SaveChanges();
+           // return _context.SaveChanges();
         }
 
         //Remove
-        public int Remove(T entity)
+        public void Remove(T entity)
         {
             _context.Set<T>().Remove(entity);
-            return _context.SaveChanges();
+           // return _context.SaveChanges();
         }
 
      

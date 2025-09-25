@@ -4,6 +4,7 @@ using Company.BLL.Services.Interface;
 using Company.DAL.Data.Contexts;
 using Company.DAL.Repositories.Implementation;
 using Company.DAL.Repositories.Interface;
+using Company.DAL.Repositories.UnitOfWorks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -22,7 +23,8 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
 builder.Services.AddScoped<IDepartmentRepositories,DepartmentRepositories>();
 builder.Services.AddScoped<IDepartmentService, DepartmentService>();
 builder.Services.AddScoped<IEmployeeRepositories, EmployeeRepositories>();
-builder.Services.AddScoped<IEmployeeService , EmployeeService>();
+builder.Services.AddScoped<IEmployeeService, EmployeeService>();
+builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 builder.Services.AddAutoMapper(Mapping => Mapping.AddProfile(new MappingProfile()));
 
 
