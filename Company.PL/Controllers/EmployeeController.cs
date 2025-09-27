@@ -52,10 +52,13 @@ namespace Company.PL.Controllers
                     };
 
                         int result = _employeeService.CreateEmployee(createdEmployeeDto);
+                    string Message; 
                     if (result > 0)
-                        return RedirectToAction(nameof(Index));
+                        TempData["Message"] = "CreatedEmployee created successfully";
                     else
-                        ModelState.AddModelError(string.Empty, "CreatedEmployee can not created");
+                        TempData["Message"] = "CreatedEmployee can not be created";
+                    return RedirectToAction(nameof(Index));
+
                 }
                 catch (Exception ex)
                 {

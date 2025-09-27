@@ -46,10 +46,12 @@ namespace Company.PL.Controllers
                     };
 
                     int result = _departmentService.AddDepartment(createDepartmentDto);
+                    string Message;   
                     if (result > 0)
-                        return RedirectToAction(nameof(Index));
+                        TempData["Message"] = "Department created successfully";
                     else
-                        ModelState.AddModelError(string.Empty, "Depatment can not created");
+                        TempData["Message"] = "Department can not be created";
+                    return RedirectToAction(nameof(Index));
                 }
                 catch (Exception ex) 
                 {
