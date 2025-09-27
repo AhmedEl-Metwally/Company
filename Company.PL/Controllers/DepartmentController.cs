@@ -31,12 +31,20 @@ namespace Company.PL.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Create(CreateDepartmentDto createDepartmentDto)
+        public IActionResult Create(CreateEditDepartmentViewModels createEditDepartmentViewModels )
         {
             if(ModelState.IsValid)
             {
                 try
                 {
+                    var createDepartmentDto = new CreateDepartmentDto()
+                    {
+                        Code = createEditDepartmentViewModels.Code,
+                        Name = createEditDepartmentViewModels.Name,
+                        Description = createEditDepartmentViewModels.Description,
+                        DateOfCreation = createEditDepartmentViewModels.CreatedOn
+                    };
+
                     int result = _departmentService.AddDepartment(createDepartmentDto);
                     if (result > 0)
                         return RedirectToAction(nameof(Index));
@@ -56,7 +64,7 @@ namespace Company.PL.Controllers
                 }
                
             }
-             return View(createDepartmentDto);
+             return View(createEditDepartmentViewModels);
         }
 
         //Details
@@ -82,7 +90,7 @@ namespace Company.PL.Controllers
             if(department is null)
                 return BadRequest();
 
-            var departmentViewModels = new EditDepartmentViewModels()
+            var departmentViewModels = new CreateEditDepartmentViewModels()
             {
                 Code = department.Code,
                 Name = department.Name,
@@ -95,7 +103,7 @@ namespace Company.PL.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Edit([FromRoute]int? id ,EditDepartmentViewModels editDepartmentViewModels)
+        public IActionResult Edit([FromRoute]int? id ,CreateEditDepartmentViewModels editDepartmentViewModels)
         {
             if(ModelState.IsValid)
             { 
