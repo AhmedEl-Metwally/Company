@@ -2,11 +2,14 @@ using Company.BLL.Mapping;
 using Company.BLL.Services.Implementation;
 using Company.BLL.Services.Interface;
 using Company.DAL.Data.Contexts;
+using Company.DAL.Models.IdentityModels;
 using Company.DAL.Repositories.Implementation;
 using Company.DAL.Repositories.Interface;
 using Company.DAL.Repositories.UnitOfWorks;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -25,6 +28,7 @@ builder.Services.AddScoped<IDepartmentService, DepartmentService>();
 builder.Services.AddScoped<IEmployeeRepositories, EmployeeRepositories>();
 builder.Services.AddScoped<IEmployeeService, EmployeeService>();
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
+builder.Services.AddIdentity<ApplicationUsers,IdentityRole>().AddEntityFrameworkStores<ApplicationDbContext>();
 builder.Services.AddAutoMapper(Mapping => Mapping.AddProfile(new MappingProfile()));
 
 
@@ -47,7 +51,7 @@ app.MapStaticAssets();
 
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Home}/{action=Index}/{id?}")
+    pattern: "{controller=Account}/{action=Register}/{id?}")
     .WithStaticAssets();
 
 
