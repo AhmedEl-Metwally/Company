@@ -1,4 +1,5 @@
-﻿@model CreatedAndUpdatedEmployeeViewModel
+﻿@using Company.PL.ViewModels.EmployeeViewModel
+@model CreatedAndUpdatedEmployeeViewModel
 @inject IDepartmentService _departmentService
 @{
     var Departments = new SelectList(_departmentService.GetAllDepartments(),nameof(DepartmentDto.DeptId),nameof(DepartmentDto.Name));

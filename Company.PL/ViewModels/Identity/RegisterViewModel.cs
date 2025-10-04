@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace Company.PL.ViewModels
+namespace Company.PL.ViewModels.Identity
 {
     public class RegisterViewModel
     {

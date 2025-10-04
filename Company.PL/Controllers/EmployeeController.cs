@@ -2,11 +2,13 @@
 using Company.BLL.Services.Interface;
 using Company.DAL.Models.EmployeeModule;
 using Company.DAL.Models.Shared;
-using Company.PL.ViewModels;
+using Company.PL.ViewModels.EmployeeViewModel;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Company.PL.Controllers
 {
+    [Authorize]
     public class EmployeeController
                                   (
                                    IEmployeeService _employeeService,

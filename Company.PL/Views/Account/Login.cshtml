@@ -1,0 +1,54 @@
+﻿@model LoginViewModels
+
+@{
+    ViewData["Title"] = "Login";
+    Layout = "~/Views/Shared/_AuthLayout.cshtml";
+}
+
+<!-- main -->
+<div class="main-w3layouts wrapper">
+	<h1>Creative SignIn Form</h1>
+	<div class="main-agileinfo">
+		<div class="agileits-top">
+			<form asp-controller="Account" asp-action="Login" method="post">
+				<div asp-validation-summary="ModelOnly" class=" text-danger"></div>
+				<input asp-for="Email" placeholder="Email">
+				<span asp-validation-for="Email" class="text-danger"></span>
+				<br />
+				<input asp-for="Password" placeholder="Password">
+				<span asp-validation-for="Password" class="text-danger"></span>
+				<br />
+				<div class="wthree-text">
+					<label class="anim">
+						<input asp-for="RememberMe" class="checkbox">
+						<span> Remember Me </span>
+					</label>
+					<div class="clear"> </div>
+				</div>
+				<input type="submit" value="SIGNIN">
+			</form>
+			<p>Have not an Account? <a asp-action="Register"> Register Now!</a></p>
+		</div>
+	</div>
+	<!-- copyright -->
+
+	<div class="colorlibcopy-agile">
+		<p> &copy; 2025 - Company - <a asp-area="" asp-controller="Account" asp-action="Login">Login</a></p>
+	</div>
+
+
+	<!-- //copyright -->
+	<ul class="colorlib-bubbles">
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+	</ul>
+</div>
+<!-- //main -->

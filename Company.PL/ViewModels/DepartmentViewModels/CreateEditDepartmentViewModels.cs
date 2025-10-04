@@ -1,4 +1,4 @@
-﻿namespace Company.PL.ViewModels
+﻿namespace Company.PL.ViewModels.DepartmentViewModels
 {
     public class CreateEditDepartmentViewModels
     {

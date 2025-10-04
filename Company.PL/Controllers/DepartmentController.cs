@@ -1,10 +1,12 @@
 ﻿using Company.BLL.Dtos.DepartmentDtos;
 using Company.BLL.Services.Interface;
-using Company.PL.ViewModels;
+using Company.PL.ViewModels.DepartmentViewModels;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Company.PL.Controllers
 {
+    [Authorize]
     public class DepartmentController
                                     (
                                     IDepartmentService _departmentService,
@@ -15,6 +17,7 @@ namespace Company.PL.Controllers
     {
         //Index
         [HttpGet]
+       // [AllowAnonymous]
         public IActionResult Index()
         {
             var department = _departmentService.GetAllDepartments(); 

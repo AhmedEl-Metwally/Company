@@ -1,11 +1,11 @@
 ﻿using Company.DAL.Models.IdentityModels;
-using Company.PL.ViewModels;
+using Company.PL.ViewModels.Identity;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Company.PL.Controllers
 {
-    public class AccountController(UserManager<ApplicationUsers> _userManager) : Controller
+    public class AccountController(UserManager<ApplicationUsers> _userManager, SignInManager<ApplicationUsers> _signInManager) : Controller
     {
         //Register
         [HttpGet]
@@ -38,10 +38,76 @@ namespace Company.PL.Controllers
         }
 
 
+        //Login & SignIn
+        [HttpGet]
+        public IActionResult Login() => View();
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult Login(LoginViewModels loginViewModels)
+        {
+            if (!ModelState.IsValid)
+                return View(loginViewModels);
+
+            // 1- Find user by email
+            // 2- If user is not null 
+            // 3- Check the password
+            // 4- sign in the user
+            // 5- Check if the user is not locked or owned
+
+            var user = _userManager.FindByEmailAsync(loginViewModels.Email).Result;
+            if (user is not null)
+            {
+                var flag = _userManager.CheckPasswordAsync(user,loginViewModels.Password).Result;
+                if (flag)
+                {
+                   var result = _signInManager.PasswordSignInAsync(user,loginViewModels.Password,loginViewModels.RememberMe,false).Result;
+                    if(result.IsNotAllowed)
+                        ModelState.AddModelError(string.Empty, "Your account not allowed");
+                    if(result.IsLockedOut)
+                        ModelState.AddModelError(string.Empty, "Your account is locked");
+                    if(result.Succeeded)
+                        return RedirectToAction(nameof(HomeController.Index), "Home");
+                   
+                }
+            }
+            ModelState.AddModelError(string.Empty, "Oooops Something went wrong.......");
+            return View(loginViewModels);
+        }
+
+
+        //Logout & SignOut  
+        [HttpGet]
+        public new IActionResult SignOut()
+        {
+            _signInManager.SignOutAsync().GetAwaiter().GetResult();
+            return RedirectToAction(nameof(Login));
+        }
 
 
 
-        //SignIn
-        //SignOut
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     }
 }
