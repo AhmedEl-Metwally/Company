@@ -4,6 +4,8 @@ using Company.DAL.Models.Shared;
 using Company.PL.ViewModels.Identity;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.ModelBinding;
+using Microsoft.IdentityModel.Tokens;
 
 namespace Company.PL.Controllers
 {
@@ -123,7 +125,37 @@ namespace Company.PL.Controllers
         }
 
         [HttpGet]
-        public IActionResult CheckYourInbox() => View();    
+        public IActionResult CheckYourInbox() => View();
+
+
+        //ResetPassword
+        [HttpGet]
+        public IActionResult ResetPassword(string email,string token)
+        {
+            TempData["email"] = email;
+            TempData["token"] = token;
+            return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult ResetPassword(ResetPasswordViewModel resetPasswordViewModel)
+        {
+            if (ModelState.IsValid) 
+            {
+                var email = TempData["email"] as string;
+                var token = TempData["token"] as string;
+                var user = _userManager.FindByEmailAsync(email).Result;
+                if (user is not null) 
+                {
+                    var result = _userManager.ResetPasswordAsync(user,token,resetPasswordViewModel.NewPassword).Result;
+                    if (result.Succeeded)
+                        return RedirectToAction(nameof(Login));
+                }
+            }
+            ModelState.AddModelError(string.Empty, "Oooops Something went wrong.......");
+            return View(resetPasswordViewModel);
+        }
 
 
     }
