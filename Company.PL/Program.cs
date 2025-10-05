@@ -1,4 +1,5 @@
 using Company.BLL.Mapping;
+using Company.BLL.Services.EmailSettings;
 using Company.BLL.Services.Implementation;
 using Company.BLL.Services.Interface;
 using Company.DAL.Data.Contexts;
@@ -27,8 +28,9 @@ builder.Services.AddScoped<IDepartmentRepositories,DepartmentRepositories>();
 builder.Services.AddScoped<IDepartmentService, DepartmentService>();
 builder.Services.AddScoped<IEmployeeRepositories, EmployeeRepositories>();
 builder.Services.AddScoped<IEmployeeService, EmployeeService>();
+builder.Services.AddScoped<IEmailSetting,EmailSetting>();
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
-builder.Services.AddIdentity<ApplicationUsers,IdentityRole>().AddEntityFrameworkStores<ApplicationDbContext>();
+builder.Services.AddIdentity<ApplicationUsers,IdentityRole>().AddEntityFrameworkStores<ApplicationDbContext>().AddDefaultTokenProviders();
 builder.Services.AddAutoMapper(Mapping => Mapping.AddProfile(new MappingProfile()));
 
 
