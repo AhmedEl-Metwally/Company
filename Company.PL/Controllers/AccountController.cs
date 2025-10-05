@@ -156,7 +156,5 @@ namespace Company.PL.Controllers
             ModelState.AddModelError(string.Empty, "Oooops Something went wrong.......");
             return View(resetPasswordViewModel);
         }
-
-
     }
 }

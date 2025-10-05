@@ -46,7 +46,7 @@
                     <th>@department.Name</th>
                     <th>@department.Description</th>
                     <th>@department.DateOfCreation</th>
-                    <partial name="_ButtonsPartialView" model="department.DeptId" />
+                    <partial name="_ButtonsPartialView" model="department.DeptId.ToString()" />
                     <td>
                         <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#DeleteModal-@department.DeptId">
                             <i class="fas fa-trash"></i> Delete

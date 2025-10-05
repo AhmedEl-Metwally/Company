@@ -70,7 +70,7 @@
                     <td>@Html.DisplayFor(e => employee.Salary)</td>
                     <td><i class="fa @(employee.IsActive ? "fa-regular fa-circle-check text-success" : "fa-regular fa-circle-xmark text-danger")"></i></td>
                     <td>@employee.Gender</td>
-                    <partial name="_ButtonsPartialView" model="employee.Id" />
+                    <partial name="_ButtonsPartialView" model="employee.Id.ToString()" />
                     <td>
                         <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModal-@employee.Id">
                             <i class="fas fa-trash"></i> Delete
