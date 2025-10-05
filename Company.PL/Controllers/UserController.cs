@@ -15,7 +15,7 @@ namespace Company.PL.Controllers
             if (!string.IsNullOrEmpty(SearchValues))
                     userQuery = userQuery.Where(u =>u.Email.ToLower().Contains(SearchValues.ToLower()));
 
-            var users = userQuery.Select(u => new UserViewModel 
+            var users = userQuery.Select(u => new UserViewModel() 
             {
                 Id = u.Id,
                 FirstName = u.FirstName,    

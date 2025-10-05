@@ -8,6 +8,7 @@
 
   <ItemGroup>
     <None Remove="Controllers\AccountController.cs~RF37f70c9.TMP" />
+    <None Remove="Controllers\UserController.cs~RF51af5d9.TMP" />
     <None Remove="Views\Department\Index.cshtml~RF37229ec.TMP" />
   </ItemGroup>
 
