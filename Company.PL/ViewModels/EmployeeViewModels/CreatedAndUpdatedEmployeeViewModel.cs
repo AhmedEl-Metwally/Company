@@ -2,7 +2,7 @@
 using Company.DAL.Models.Shared;
 using System.ComponentModel.DataAnnotations;
 
-namespace Company.PL.ViewModels.EmployeeViewModel
+namespace Company.PL.ViewModels.EmployeeViewModels
 {
     public class CreatedAndUpdatedEmployeeViewModel
     {

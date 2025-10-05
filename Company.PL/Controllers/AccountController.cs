@@ -1,4 +1,5 @@
 ﻿using Company.DAL.Models.IdentityModels;
+using Company.DAL.Models.Shared;
 using Company.PL.ViewModels.Identity;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -85,9 +86,30 @@ namespace Company.PL.Controllers
         }
 
 
+        //Forget Password
+        [HttpGet]
+        public IActionResult ForgetPassword() => View();
 
-
-
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult SendResetPasswordUrl(ForgetPasswordViewModel forgetPasswordViewModel)
+        {
+            if (ModelState.IsValid)
+            {
+                var user = _userManager.FindByEmailAsync(forgetPasswordViewModel.Email).Result;
+                if (user is not null)
+                {
+                    var token = _userManager.GeneratePasswordResetTokenAsync(user).Result;
+                    var url = Url.Action("ResetPassword", "Account", new { email = forgetPasswordViewModel.Email, token },Request.Scheme);
+                    var email = new Email()
+                    {
+                        To =forgetPasswordViewModel.Email,
+                        Subject = "Reset your password",
+                        Body = url,
+                    };
+                }
+            }
+        }
 
 
 

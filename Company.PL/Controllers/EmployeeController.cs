@@ -2,7 +2,7 @@
 using Company.BLL.Services.Interface;
 using Company.DAL.Models.EmployeeModule;
 using Company.DAL.Models.Shared;
-using Company.PL.ViewModels.EmployeeViewModel;
+using Company.PL.ViewModels.EmployeeViewModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
